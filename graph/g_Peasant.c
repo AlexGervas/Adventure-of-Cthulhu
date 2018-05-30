@@ -18,6 +18,29 @@ void Draw ( int x, int y)
     setcolor (4); //mouth
     fillellipse (x+0.5, y+7,5, 1);
 
+	setcolor (2);  //beard
+	line(x+1, y+30, x+9, y+6);
+	line(x+9, y+6, x-9, y+7);
+	line(x-9, y+7, x+1, y+30);
+
+	/*int poly [12];
+	poly[0]=x+1;
+	poly[1]=y+30;
+	poly[2]=x+9;
+	poly[3]=y+6;
+
+	poly[4]=x+9;
+	poly[5]=y+6;
+	poly[6]=x-9;
+	poly[7]=y+7;
+
+	poly[8]=x-9;
+	poly[9]=y+7;
+	poly[10]=x+1;
+	poly[11]=y+30;
+	setcolor (15);
+	fillpoly(7,poly);*/
+
     setcolor (13);
     line(x,y + 16, x, y +40);
     line(x+1,y + 17, x+1, y +41);
