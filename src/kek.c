@@ -6,7 +6,7 @@
 #include "cleaning.h"
 #include "gun.h"
 #include "knight.h"
-#include "enemy2.h"
+#include "Peasant.h"
 #include "enemy3.h"
 #include "moveenemy.h"
 #include "inttostr.h"
