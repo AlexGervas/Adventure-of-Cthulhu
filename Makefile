@@ -2,7 +2,7 @@ CXX=gcc
 CFLAGS =  -c -Wall -Werror -std=c99
 .PHONY: all clean
  
-OBJECTS = build/kek.o build/Drawchtul.o build/cleaning.o build/gun.o  build/knight.o build/enemy2.o build/enemy3.o build/moveenemy.o build/inttostr.o build/cthulhu.o build/menu.o 
+OBJECTS = build/kek.o build/Drawchtul.o build/cleaning.o build/gun.o  build/knight.o build/Peasant.o build/enemy3.o build/moveenemy.o build/inttostr.o build/cthulhu.o build/menu.o 
 
 all: bin build bin/prog
 
@@ -24,8 +24,8 @@ build/gun.o: src/gun.c src/gun.h
 build/knight.o: src/knight.c src/knight.h
 	$(CXX) $(CFLAGS) src/knight.c -o build/knight.o -lgraph
 
-build/enemy2.o: src/enemy2.c src/enemy2.h
-	$(CXX) $(CFLAGS) src/enemy2.c -o build/enemy2.o -lgraph
+build/Peasant.o: src/Peasant.c src/Peasant.h
+	$(CXX) $(CFLAGS) src/Peasant.c -o build/Peasant.o -lgraph
 
 build/enemy3.o: src/enemy3.c src/enemy3.h
 	$(CXX) $(CFLAGS) src/enemy3.c -o build/enemy3.o -lgraph
