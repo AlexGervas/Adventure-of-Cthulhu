@@ -36,7 +36,6 @@ void cthulhu (int kek)
 			gun (xg,yg);
 		}
         }
-        printf ("%d   %d  %d\n", xe,xg, ch);
         if (xg >= xe)
         {
             cleaning (xe,ye);

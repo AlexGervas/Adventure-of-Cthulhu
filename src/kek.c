@@ -16,8 +16,8 @@
 
 int main ()
 {
-    bool isGameActive = true;
-    int xe=530;
+	bool isGameActive = true;
+	int xe=530;
 	int driver, mode;
 	driver = DETECT;  /* auto-detection */
 	mode = 0;
@@ -26,19 +26,19 @@ int main ()
 	//setcolor (1); 
 	//bar(0,0,500,250);
 	//setcolor (2); 
-    //bar(0,250,500,500);
-    srand (time(NULL));
+	//bar(0,250,500,500);
+	srand (time(NULL));
 	int record = 0;
-    char s[5];
-    int kek=rand()%3+1;
-    do
-    {
-        int i=4;
+	char s[5];
+	int kek=rand()%3+1;
+	do
+	{
+		int i=4;
 		int tmp;
 		tmp=record;	
 		while(tmp>0)
-        {
-            s[i]=tmp%10+'0';
+		{
+			s[i]=tmp%10+'0';
 			tmp/=10;
 			i--;
 		}
@@ -51,13 +51,12 @@ int main ()
 			kek=rand()%3+1;
 			xe=530;
 		}
-        //printf("loooooooooooooooooooool");
 		//setfillstyle(1,1);
 		//bar(0,0,500,250);
 		//setfillstyle(1,2);
 		//bar(0,250,500,500);
 	}
-    while(isGameActive);
+	while(isGameActive);
 	getchar();
 	return 0;
 }
