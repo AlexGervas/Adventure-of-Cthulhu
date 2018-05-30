@@ -22,6 +22,7 @@ void Drawchtul ( int x, int y)
 	poly[15]=y+40;
 	poly[16]=x+15;
 	poly[17]=y;
+
 	setcolor (2);
 	fillpoly(9,poly);
 	setcolor (2);
@@ -30,10 +31,10 @@ void Drawchtul ( int x, int y)
 	setcolor (2); //head
 	fillellipse (x, y,15, 15);
 
-	setcolor (BLACK); //eyes
-	setcolor (3);
+	setcolor (3); //eyes
 	fillellipse (x-5, y,2, 2);
 	fillellipse (x+5, y,2, 2);
-	setcolor (RED);
-	arc(x,y,240,300,8);
+
+	setcolor (4);  //mouth
+	arc(x,y,45, 139,8);
 }
