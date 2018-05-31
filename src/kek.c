@@ -22,7 +22,7 @@ int main ()
 	driver = DETECT;  /* auto-detection */
 	mode = 0;
 	initgraph(&driver, &mode, "c:\\bc5\\bgi");
-	menu ();
+	//menu ();
 	//setcolor (1); 
 	//bar(0,0,500,250);
 	//setcolor (2); 
@@ -30,7 +30,7 @@ int main ()
 	srand (time(NULL));
 	int record = 0;
 	char s[5];
-	int kek=rand()%3+1;
+	menu ();
 	do
 	{
 		int i=4;
@@ -45,10 +45,10 @@ int main ()
 		setcolor (GREEN);
 		outtextxy(430,30,s);
 		//record = cthulhu (kek);
-		cthulhu (kek);
+		//cthulhu (kek);
 		if (xe<0 || xe==535)
 		{
-			kek=rand()%3+1;
+			//kek=rand()%3+1;
 			xe=530;
 		}
 		//setfillstyle(1,1);

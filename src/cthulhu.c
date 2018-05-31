@@ -15,7 +15,8 @@ void cthulhu (int kek)
 	char c;
 	if(kbhit())
         {
-            c=getch();
+           c=getchar();
+		//scanf ("%c", &c);
 		if (c == 'w' && yh>99)
 		{
 			cleaning (xh,yh);
