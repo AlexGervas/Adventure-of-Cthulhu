@@ -1,3 +1,4 @@
+#define GRAPHICS_KEK
 #include "graphics.h"
 #include <stdlib.h>
 #include <stdbool.h>

@@ -1,3 +1,4 @@
+#define GRAPHICS_DRAWCHTUL
 #include "graphics.h"
 #include "Drawchtul.h"
 

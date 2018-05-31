@@ -1,3 +1,4 @@
+#define GRAPHICS_KNIGHT
 #include "graphics.h"
 #include "knight.h"
 #include "moveenemy.h"

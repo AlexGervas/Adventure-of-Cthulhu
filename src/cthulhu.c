@@ -1,3 +1,4 @@
+#define GRAPHICS_CTHULHU
 #include "graphics.h"
 #include "cthulhu.h"
 #include "Drawchtul.h"

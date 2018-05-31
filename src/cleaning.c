@@ -1,3 +1,4 @@
+#define GRAPHICS_CLEANING
 #include "graphics.h"
 #include "cleaning.h"
 

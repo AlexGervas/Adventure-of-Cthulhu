@@ -1,3 +1,4 @@
+#define GRAPHICS_MENU
 #include "graphics.h"
 #include "menu.h"
 #include "cthulhu.h"

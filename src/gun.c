@@ -1,3 +1,4 @@
+#define GRAPHICS_GUN
 #include "graphics.h"
 #include "gun.h"
 
