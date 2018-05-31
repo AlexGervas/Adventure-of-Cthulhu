@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "inttostr.h"
 #include "cthulhu.h"
-//#include "menu.h"
 
 void kek ()
 {
