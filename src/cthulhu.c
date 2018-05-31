@@ -37,7 +37,7 @@ void cthulhu (int kek)
 			gun (xg,yg);
 		}
         }
-        if (xg >= xe)
+        if (xg >= xe && yg>=ye)
         {
             cleaning (xe,ye);
             xe=540;
@@ -46,6 +46,11 @@ void cthulhu (int kek)
             xg=30;
         }
 	xe-=5;
+	if (xe<0 || xe==535)
+	{
+		kek=rand()%3+1;
+		xe=530;
+	}
 	if (ch == 1)
         {
             xg+=6;
