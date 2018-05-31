@@ -1,4 +1,4 @@
-#include <graphics.h>
+#include "graphics.h"
 #include "cthulhu.h"
 #include "Drawchtul.h"
 #include "moveenemy.h"

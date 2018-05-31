@@ -1,4 +1,4 @@
-#include <graphics.h>
+#include "graphics.h"
 #include "Drawchtul.h"
 
 void Drawchtul ( int x, int y)

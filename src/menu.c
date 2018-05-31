@@ -1,4 +1,4 @@
-#include <graphics.h>
+#include "graphics.h"
 #include "menu.h"
 #include "cthulhu.h"
 #include "kek.h"
