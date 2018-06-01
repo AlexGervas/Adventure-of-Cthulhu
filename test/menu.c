@@ -1,5 +1,19 @@
-#define CTEST_MAIN
-#include <menu.h>
+#define CTEST_MENU
+#include <cleaning.h>
+#include <Drawchtul.h>
+#include <gun.h>
+#include <inttostr.h>
+#include <kbhit.h>
+#include <knight.h>
+#include <moveenemy.h>
+#include <Peasant.h>
+#include <stone.h>
+#include <wait_for_char.h>
+#include <cthulhu.h>
+#include <kek.h>
+#include <graphics.h>
+#include <stdio.h>
+#include <X11/Xlib.h>
 #include <ctest.h>
 
 char deck[8][8];
