@@ -67,5 +67,6 @@ int main ()
 				case 105: break;
 			}
        	}
+closegraph();
 return 0;
 }

@@ -26,7 +26,7 @@ CTEST(Cthulhu_move, Correct)
 
 CTEST(Cthulhu_move, Incorrect) 
 {
-    	int result = chechcthul(50); 
+    	int result = chechcthul(20); 
 	int expected = 0; 
 	ASSERT_EQUAL(expected, result);
 }

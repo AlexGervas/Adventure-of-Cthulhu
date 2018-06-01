@@ -10,13 +10,10 @@ void kek ()
 {
 	bool isGameActive = true;
 	srand (time(NULL));
-	//int kek=rand()%3+1;
 	do
 	{
-		
 		if (!cthulhu ()) break;
 	}
 	while(isGameActive);
-	wait_for_char ();
-	//getchar();
+	//wait_for_char ();
 }
