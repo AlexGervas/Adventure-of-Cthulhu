@@ -1,4 +1,4 @@
-#define CTEST_MENU
+#define CTEST_MAIN
 #include <cleaning.h>
 #include <Drawchtul.h>
 #include <gun.h>
