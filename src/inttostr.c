@@ -1,5 +1,5 @@
 #define GRAPHICS_INTTOSTR
-#include "graphics.h"
+#include <graphics.h>
 #include "inttostr.h"
 
 void inttostr(int chiselko, char s[])

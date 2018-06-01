@@ -1,5 +1,5 @@
 #define GRAPHICS_GUN
-#include "graphics.h"
+#include <graphics.h>
 #include "gun.h"
 
 void gun (int x, int y)

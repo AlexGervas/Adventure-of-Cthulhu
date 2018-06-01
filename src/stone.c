@@ -1,5 +1,5 @@
 #define GRAPHICS_STONE
-#include "graphics.h"
+#include <graphics.h>
 #include "stone.h"
 
 void stone (int x, int y)

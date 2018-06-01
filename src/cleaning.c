@@ -1,5 +1,5 @@
 #define GRAPHICS_CLEANING
-#include "graphics.h"
+#include <graphics.h>
 #include "cleaning.h"
 
 void cleaning (int x,int y)
