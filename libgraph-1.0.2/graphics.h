@@ -27,7 +27,7 @@
 #define GRAPHICS_H 1
 
 
-#include <SDL/SDL.h>
+//#include <SDL/SDL.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <signal.h>
