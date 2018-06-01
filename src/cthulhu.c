@@ -12,6 +12,11 @@
 int xe=500, ye = 0, record=0, xg=30,yg=250, ch=0, xh=30,yh=250, kekkes = 0;
 int life = 0;
 int lifecth = 3;
+int checkcthul (int y)
+{
+	if (y<401 && y>99) return 1;
+	else return 0;
+}
 int cthulhu ()
 {
 	srand (time(NULL));
@@ -27,13 +32,13 @@ int cthulhu ()
 	if(kbhit())
         {
            	c=getchar();
-		if (c == 'w' && yh>99)
+		if (c == 'w' && checkcthul(yh))
 		{
 			cleaning (xh,yh);
 			yh-=100;
 			Drawchtul (xh,yh);
        		}
-        	if (c == 's' && yh<401)
+        	if (c == 's' && checkcthul(yh))
 		{
 			cleaning (xh,yh);
 			yh+=100;
