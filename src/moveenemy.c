@@ -7,12 +7,13 @@
 #include "Peasant.h"
 #include "stone.h"
 #include "cleaning.h"
-void moveenemy (int x, int y, int kek)
+int moveenemy (int x, int y, int kek)
 {
-	//kek=rand()%3+1;
-	if (kek==1) knight(x, y);
+	int life = 1;
+	if (kek==1) { life = 3; knight(x, y);}
 	if (kek==2) Peasant(x, y);
-	if (kek==3) stone(x, y);
-	delay(50);   //Sleep (50);
+	if (kek==3) { life = 10; stone(x, y);}
+	delay(50); 
 	cleaning (x,y);
+	return life;
 }
