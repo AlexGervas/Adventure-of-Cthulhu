@@ -1,8 +1,9 @@
 #define GRAPHICS_MENU
-#include <graphics.h>
-#include "menu.h"
+#include "graphics.h"
 #include "cthulhu.h"
 #include "kek.h"
+#include "wait_for_char.h"
+
 int main ()
 {
 	char key;

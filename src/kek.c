@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "inttostr.h"
 #include "cthulhu.h"
+#include "wait_for_char.h"
 
 void kek ()
 {
@@ -29,5 +30,6 @@ void kek ()
 		if (!cthulhu (kek)) break;
 	}
 	while(isGameActive);
-	getchar();
+	wait_for_char ();
+	//getchar();
 }
