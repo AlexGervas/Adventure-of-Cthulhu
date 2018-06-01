@@ -7,15 +7,23 @@
 #include "kbhit.h"
 #include <stdio.h>
 #include <stdlib.h>
-int xe=530,ye=250, record=0, xg=30,yg=250, ch=0, xh=30,yh=250;
+#include <time.h>
+#include <math.h>
+int xe=500, ye = 0, record=0, xg=30,yg=250, ch=0, xh=30,yh=250, kekkes = 0;
 int life = 0;
-int cthulhu (int kek)
+int lifecth = 3;
+int cthulhu ()
 {
+	srand (time(NULL));
 	Drawchtul (xh,yh);
-	if (life == 0) life = moveenemy (xe,ye, kek);
-	else moveenemy (xe,ye, kek);
-	int lifecth = 3;
-	char c;
+	if (life == 0) 
+	{
+		ye = rand()%400+30; 
+		kekkes=rand()%3+1; 
+		life = moveenemy (xe,ye, kekkes); 
+	}
+	else moveenemy (xe,ye, kekkes);
+	char c = 0;
 	if(kbhit())
         {
            	c=getchar();
@@ -39,28 +47,27 @@ int cthulhu (int kek)
 			gun (xg,yg);
 		}
         }
-        if (xg >= xe && yg>=ye)
+        if (abs(xg-xe)<30 && abs(yg-ye)<30)
         {
 		life--;
 		//printf ("%d ", life);
 		ch=0;
-            	xg=30;
+            	//xg=30;
 		if (life == 0)
             	{
 			cleaning (xe,ye);
            		xe=540;
             		record++;
             		ch=0;
-            		xg=30;
-			kek=rand()%3+1;
+            		//xg=30;
 		}
         }
 	xe-=5;
-	if (xe<0 || xe==535)
+	if (xe<30)
 	{
-		if (xe < 0) lifecth --;
-		kek=rand()%3+1;
-		xe=530;
+		lifecth --;
+		//life = 0;
+		xe=535;
 	}
 	if (lifecth == 0) return 0;
 	if (ch == 1)
