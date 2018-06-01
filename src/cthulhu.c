@@ -79,5 +79,6 @@ printf ("%d ", life);
             	xg+=6;
             	gun (xg,yg);
         }
+	fflush(stdin);
 	return 1;
 }

@@ -3,6 +3,8 @@
 #include "menu.h"
 #include "cthulhu.h"
 #include "kek.h"
+#include <stdio.h>
+#include <X11/Xlib.h>
 int checkmenu (int y)
 {
 	if (y<104 && y>16) return 1;
@@ -10,11 +12,12 @@ int checkmenu (int y)
 }
 int main ()
 {
+	//XInitThreads();
 	char key;
 	int driver, mode;
 	driver = DETECT;  /* auto-detection */
 	mode = 0;
-	initgraph(&driver, &mode, "c:\\bc5\\bgi");
+	initgraph(&driver, &mode, "");
 	int x=140, y=15;
 	setcolor (GREEN);
 	outtextxy(30,10, "New Game");
