@@ -1,5 +1,5 @@
-#ifndef KBHITh 
-#define KBHITh 
+#ifndef KBHIT_H
+#define KBHIT_H
 void init_keyboard (void); 
 void close_keyboard (void); 
 int kbhit (void); 

@@ -1,6 +1,15 @@
 #define GRAPHICS_MENU
-#include "graphics.h"
-#include "menu.h"
+#include <graphics.h>
+#include "cleaning.h"
+#include "Drawchtul.h"
+#include "gun.h"
+#include "inttostr.h"
+#include "kbhit.h"
+#include "knight.h"
+#include "moveenemy.h"
+#include "Peasant.h"
+#include "stone.h"
+#include "wait_for_char.h"
 #include "cthulhu.h"
 #include "kek.h"
 #include <stdio.h>
@@ -52,7 +61,7 @@ int main ()
 			bar(0,0,160,110); 
 			switch (y)
 			{
-				case 15: kek (); break;
+				case 15: kek(); break;
 				case 45: break;
 				case 75:outtextxy(30,10, "Press w or s to move. Press enter to shoot"); 
 					outtextxy(100,22, "Game rules:");

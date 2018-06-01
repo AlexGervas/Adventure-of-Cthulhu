@@ -1,13 +1,22 @@
 CXX=gcc
 CFLAGS =  -c -Wall -Werror -std=c99
-.PHONY: all clean
+FLAGS  =  -Wall -Werror -std=c99
  
 OBJECTS = build/menu.o build/Drawchtul.o build/cleaning.o build/gun.o  build/knight.o build/Peasant.o build/stone.o build/moveenemy.o build/inttostr.o build/cthulhu.o build/kek.o build/wait_for_char.o
 
-all: bin build bin/prog
+OB = build/menu_test.o build/Drawchtul.o build/cleaning.o build/gun.o  build/knight.o build/Peasant.o build/stone.o build/moveenemy.o build/inttostr.o build/cthulhu.o build/kek.o build/wait_for_char.o
+
+.PHONY: clean all bin build default test
+
+all: bin build default test
+
+default: bin/prog
+
+test: bin/prog_test
+	bin/prog_test
 
 bin/prog: $(OBJECTS)
-	$(CXX) $(OBJECTS) -o bin/prog -lgraph
+	$(CXX) $(FLAGS) $(OBJECTS) -o bin/prog -lgraph
 
 build/menu.o: src/menu.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
 	$(CXX) $(CFLAGS) src/menu.c -o build/menu.o -lgraph
@@ -45,13 +54,18 @@ build/kek.o: src/kek.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h sr
 build/wait_for_char.o: src/wait_for_char.c src/wait_for_char.h src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h libgraph-1.0.2/graphics.h
 	$(CXX) $(CFLAGS) src/wait_for_char.c -o build/wait_for_char.o -lgraph
 
+bin/prog_test: $(OB) 
+	$(CXX) $(FLAGS) $(OB) -o bin/prog_test -lgraph
+
+build/menu_test.o: test/menu.c thirdparty/ctest.h src/wait_for_char.h src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h libgraph-1.0.2/graphics.h
+	$(CXX) $(CFLAGS) -I thirdparty -I src -c test/menu.c -o build/menu_test.o -lgraph
+
 build:
-	mkdir build
+	mkdir -p build
 bin:
-	mkdir bin 
+	mkdir -p bin 
 clean:
-	rm build/*.o
-	rm bin/*
+	-rm -rf build bin
 
 
 

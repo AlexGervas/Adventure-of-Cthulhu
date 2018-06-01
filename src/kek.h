@@ -1,5 +1,5 @@
-#ifndef KNIGHT_H
-#define KNIGHT_H
+#ifndef KEK_H
+#define KEK_H
 
 void kek ();
 

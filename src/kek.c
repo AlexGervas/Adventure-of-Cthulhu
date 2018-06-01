@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "kek.h"
 #include "inttostr.h"
 #include "cthulhu.h"
 #include "wait_for_char.h"
 
-void kek ()
+void kek()
 {
 	bool isGameActive = true;
 	srand (time(NULL));
