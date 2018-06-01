@@ -1,9 +1,13 @@
 #define GRAPHICS_MENU
 #include "graphics.h"
+#include "menu.h"
 #include "cthulhu.h"
 #include "kek.h"
-#include "wait_for_char.h"
-
+int checkmenu (int y)
+{
+	if (y<104 && y>16) return 1;
+	else return 0;
+}
 int main ()
 {
 	char key;
@@ -21,7 +25,7 @@ int main ()
 	while (key!=13)
 	{
 		key=getchar();
-		if (key == 's' && y<104)
+		if (key == 's' && checkmenu (y))
 		{
 			setcolor (BLACK);
 			fillellipse (x, y ,4, 4);
@@ -29,7 +33,7 @@ int main ()
 			setcolor (GREEN);
 			fillellipse (x, y ,4, 4);
       	 	}
-		if (key == 'w' && y>16)
+		if (key == 'w' && checkmenu (y))
 		{
 			setcolor (BLACK);
 			fillellipse (x, y ,4, 4);
