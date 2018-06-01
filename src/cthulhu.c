@@ -26,7 +26,7 @@ int cthulhu ()
 		ye = rand()%400+30; 
 		kekkes=rand()%3+1; 
 		life = moveenemy (xe,ye, kekkes); 
-printf ("%d ", life);
+		printf ("%d ", life);
 	}
 	else moveenemy (xe,ye, kekkes);
 	char c = 0;
@@ -57,7 +57,7 @@ printf ("%d ", life);
         if (abs(xg-xe)<50 && abs(yg-ye)<50)
         {
 		life--;
-printf ("%d ", life);
+		printf ("%d ", life);
 		ch=0;
 		xg = 30;
 		if (life == 0)
@@ -80,5 +80,6 @@ printf ("%d ", life);
             	gun (xg,yg);
         }
 	fflush(stdin);
+	fflush(stdout);
 	return 1;
 }

@@ -44,6 +44,7 @@ int main ()
 			setcolor (GREEN);
 			fillellipse (x, y ,4, 4);
        		}
+		fflush(stdin);
 	}
 	if (key == 13)
 		{
