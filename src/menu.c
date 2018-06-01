@@ -7,13 +7,13 @@
 #include <X11/Xlib.h>
 int checkmenu (int y)
 {
-	if (y<104 && y>16) return 1;
+	if (y<106 && y>14) return 1;
 	else return 0;
 }
 int main ()
 {
 	//XInitThreads();
-	char key;
+	int key = 0;
 	int driver, mode;
 	driver = DETECT;  /* auto-detection */
 	mode = 0;
