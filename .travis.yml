@@ -3,6 +3,5 @@ language: cpp
 compiler: g++
 os: linux
 install: 
-- git clone https://github.com/SFML/SFML && cd SFML
-- export SFML_ROOT=$(pwd)/build/install
+- git clone https://github.com/SFML/SFML
 script: make
