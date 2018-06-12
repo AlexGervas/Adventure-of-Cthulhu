@@ -9,10 +9,10 @@ OBJECTS = build/main.o
 all: bin build  bin/prog
 
 bin/prog: $(OBJECTS) 
-	$(CXX) -I SFML-2.5.0/lib $(OBJECTS) -o bin/prog $(FLAGS) 
+	$(CXX) $(OBJECTS) -o bin/prog $(FLAGS) 
 
 build/main.o: src/main.cpp 
-	$(CXX) -I 2/SFML-2.5.0/include $(CFLAGS) src/main.cpp -o build/main.o 
+	$(CXX) $(CFLAGS) src/main.cpp -o build/main.o 
 
 build:
 	mkdir  build
