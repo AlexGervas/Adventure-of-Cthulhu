@@ -1,6 +1,6 @@
 CXX = g++
-CFLAGS = -c -I Coursework/SFML-2.5.0/include -std=c++11
-FLAGS =  -LCoursework/SFML-2.5.0/lib -lsfml-graphics -lsfml-window -lsfml-system
+CFLAGS = -c -std=c++11
+FLAGS =  -lsfml-graphics -lsfml-window -lsfml-system
 
 OBJECTS = build/main.o
 
