@@ -5,5 +5,4 @@ os: linux
 install: 
 - git clone https://github.com/SFML/SFML && cd SFML
 - export SFML_ROOT=$(pwd)/build/install
-- mkdir build && cd build
 script: make
