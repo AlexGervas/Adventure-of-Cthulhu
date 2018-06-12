@@ -1,71 +1,22 @@
-CXX=gcc
-CFLAGS =  -c -Wall -Werror -std=c99
-FLAGS  =  -Wall -Werror -std=c99
- 
-OBJECTS = build/main.o build/Drawchtul.o build/cleaning.o build/gun.o  build/knight.o build/Peasant.o build/stone.o build/moveenemy.o build/inttostr.o build/cthulhu.o build/kek.o build/wait_for_char.o
+CXX = g++
+CFLAGS = -c -std=c++11
+FLAGS =  -lsfml-graphics -lsfml-window -lsfml-system
 
-OB = build/main_test.o build/Drawchtul.o build/cleaning.o build/gun.o  build/knight.o build/Peasant.o build/stone.o build/moveenemy.o build/inttostr.o build/cthulhu.o build/kek.o build/wait_for_char.o
+OBJECTS = build/main.o
 
-.PHONY: clean all bin build default test
+.PHONY: clean all bin build  bin/prog
 
-all: bin build default test
+all: bin build  bin/prog
 
-default: bin/prog
+bin/prog: $(OBJECTS) 
+	$(CXX) $(OBJECTS) -o bin/prog $(FLAGS)
 
-test: bin/prog_test
-	bin/prog_test
-
-bin/prog: $(OBJECTS)
-	$(CXX) $(FLAGS) $(OBJECTS) -o bin/prog -lgraph
-
-build/main.o: src/main.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/main.c -o build/main.o -lgraph
-
-build/Drawchtul.o: src/Drawchtul.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/Drawchtul.c -o build/Drawchtul.o -lgraph
-
-build/cleaning.o: src/cleaning.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/cleaning.c -o build/cleaning.o -lgraph
-
-build/gun.o: src/gun.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/gun.c -o build/gun.o -lgraph
-
-build/knight.o: src/knight.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/knight.c -o build/knight.o -lgraph
-
-build/Peasant.o: src/Peasant.c src/Peasant.h src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/Peasant.c -o build/Peasant.o -lgraph
-
-build/stone.o: src/stone.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/stone.c -o build/stone.o -lgraph
-
-build/moveenemy.o: src/moveenemy.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/moveenemy.c -o build/moveenemy.o -lgraph
-
-build/inttostr.o: src/inttostr.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/inttostr.c -o build/inttostr.o -lgraph
-
-build/cthulhu.o: src/cthulhu.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/cthulhu.c -o build/cthulhu.o -lgraph
-
-build/kek.o: src/kek.c src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h src/wait_for_char.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/kek.c -o build/kek.o -lgraph
-
-build/wait_for_char.o: src/wait_for_char.c src/wait_for_char.h src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) src/wait_for_char.c -o build/wait_for_char.o -lgraph
-
-bin/prog_test: $(OB) 
-	$(CXX) $(FLAGS) $(OB) -o bin/prog_test -lgraph
-
-build/main_test.o: test/main.c thirdparty/ctest.h src/wait_for_char.h src/cleaning.h src/cthulhu.h src/Drawchtul.h src/gun.h src/inttostr.h src/kbhit.h src/kek.h src/knight.h src/moveenemy.h src/Peasant.h src/stone.h libgraph-1.0.2/graphics.h
-	$(CXX) $(CFLAGS) -I thirdparty -I src -c test/main.c -o build/main_test.o -lgraph
+build/main.o: src/main.cpp 
+	$(CXX) $(CFLAGS) src/main.cpp -o build/main.o
 
 build:
-	mkdir build
+	mkdir  build
 bin:
-	mkdir bin 
+	mkdir -p bin 
 clean:
-	-rm -rf build bin
-
-
-
+	-rm -rf build bin/prog
