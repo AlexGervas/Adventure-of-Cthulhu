@@ -2,5 +2,7 @@ sudo: false
 language: cpp
 compiler: g++
 os: linux
-install: sudo apt-get install libsfml-dev
+install: 
+  - sudo apt-get update -q
+  - sudo apt-get install libsfml-dev
 script: make
