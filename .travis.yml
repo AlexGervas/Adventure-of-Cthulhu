@@ -6,8 +6,4 @@ install:
 - git clone https://github.com/SFML/SFML && cd SFML
 - export SFML_ROOT=$(pwd)/build/install
 - mkdir build && cd build
-- $cmake34 -DCMAKE_INSTALL_PREFIX=$(pwd)/install .. && make && make install && cd ..
-- git clone https://github.com/anhero/JsonBox && cd JsonBox && mkdir build && cd build
-- export JSONBOX_ROOT=$(pwd)/install
-- $cmake34 -DCMAKE_INSTALL_PREFIX=$JSONBOX_ROOT .. && make && make install
 script: make
