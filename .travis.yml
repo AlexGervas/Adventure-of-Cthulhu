@@ -1,4 +1,9 @@
+sudo: false
+language: cpp
 compiler: g++
- os: linux
- install: sudo apt-get install -y libsfml-dev
--script: make      
+os: linux
+install: sudo apt-get install -y libsfml-dev
+script: 
+- make
+- cd bin
+- ./prog
