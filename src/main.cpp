@@ -18,7 +18,31 @@ struct Anti
 	int x, y, kind, match, alpha;
 	Anti(){ match = 0; alpha = 255; }
 };
-
+int checkmenu(int c)
+{
+	if (c == 1 || c == 2) return 1;
+	else return 0;
+}
+int checkwindowup(int x, int y)
+{
+	if (y > 0) return 1;
+	else return 0;
+}
+int checkwindowdown(int x, int y)
+{
+	if (y < (512 - 131)) return 1;
+	else return 0;
+}
+int checkwindowright(int x, int y)
+{
+	if (x < (1024 - 131)) return 1;
+	else return 0;
+}
+int checkwindowleft(int x, int y)
+{
+	if (x > 0) return 1;
+	else return 0;
+}
 int main()
 {
 	Font font;
@@ -66,17 +90,17 @@ int main()
 	bool mar = 0;
 	for (int i = 0; i < N; i++)
 	{
-		xc[i] = rand() % 900 + 100;
-		yc[i] = rand() % 400 + 100;
+		xc[i] = rand() % 762 + 131;
+		yc[i] = rand() % 250 + 131;
 	}
 	while (mar != 1)
 	{
-		if (c == 1) 
+		if (c == 1)
 		{
-			txt2.setColor(Color::Blue); 
-			txt3.setColor(Color::Yellow); 
+			txt2.setColor(Color::Blue);
+			txt3.setColor(Color::Yellow);
 		}
-		if (c == 2) 
+		if (c == 2)
 		{
 			txt3.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
@@ -91,142 +115,144 @@ int main()
 		if (Keyboard::isKeyPressed(Keyboard::Up)) c = 1;
 		if (Keyboard::isKeyPressed(Keyboard::Return)) mar = 1;
 	}
-	if (c == 1)
+	if (checkmenu(c))
 	{
-		while (app.isOpen())
+		if (c == 1)
 		{
-			Event e;
-			Text txt, txt1;
-			txt.setFont(font);
-			txt.setCharacterSize(25);
-			txt.setColor(Color::Blue);
-			txt.setPosition(900, 30);
-			txt.setString(string("Score: \n      ") + to_string(rec));
-
-			txt1.setFont(font);
-			txt1.setCharacterSize(40);
-			txt1.setColor(Color::Red);
-			txt1.setPosition(125, 35);
-			txt1.setString(string("x") + to_string(life));
-
-
-
-			while (app.pollEvent(e))
+			while (app.isOpen())
 			{
-				if (e.type == Event::Closed || life <= 0)
-					app.close();
-			}
+				Event e;
+				Text txt, txt1;
+				txt.setFont(font);
+				txt.setCharacterSize(25);
+				txt.setColor(Color::Blue);
+				txt.setPosition(900, 30);
+				txt.setString(string("Score: \n      ") + to_string(rec));
 
-			if (Keyboard::isKeyPressed(Keyboard::Down)) y += 3;
-			if (Keyboard::isKeyPressed(Keyboard::Up)) y -= 3;
-			if (Keyboard::isKeyPressed(Keyboard::Right)) x += 3;
-			if (Keyboard::isKeyPressed(Keyboard::Left)) x -= 3;
-			if (Keyboard::isKeyPressed(Keyboard::Return))
-			{
-				xf += 5;
-				yf = y;
-				alphaF = 255;
-				mark = 1;
-			}
-			if (mark == 1) xf += 5;
+				txt1.setFont(font);
+				txt1.setCharacterSize(40);
+				txt1.setColor(Color::Red);
+				txt1.setPosition(125, 35);
+				txt1.setString(string("x") + to_string(life));
 
-			if (xf > 900)
-			{
-				mark = 0;
-				alphaF = 0;
-				xf = x;
-				yf = y;
-			}
-			if (En.x > 30)
-			{
-				En.x -= 2;
-			}
-			else
-			{
-				En.x = 800;
-				En.y = rand() % 400;
-				En.kind = rand() % 3;
-				En.match = En.kind + 1;
-			}
-			if (abs(En.x - xf) < 65 && abs(En.y - yf) < 65 && mark == 1)
-			{
-				En.match--;
-				//En.x += 80;
-				alphaF = 0;
-				xf = x;
-				yf = y;
-				if (En.match == 0)
+
+
+				while (app.pollEvent(e))
+				{
+					if (e.type == Event::Closed || life <= 0)
+						app.close();
+				}
+
+				if (Keyboard::isKeyPressed(Keyboard::Down) && checkwindowdown (x,y)) y += 3;
+				if (Keyboard::isKeyPressed(Keyboard::Up) && checkwindowup(x, y)) y -= 3;
+				if (Keyboard::isKeyPressed(Keyboard::Right) && checkwindowright(x, y)) x += 3;
+				if (Keyboard::isKeyPressed(Keyboard::Left) && checkwindowleft(x, y)) x -= 3;
+				if (Keyboard::isKeyPressed(Keyboard::Return))
+				{
+					xf += 5;
+					yf = y;
+					alphaF = 255;
+					mark = 1;
+				}
+				if (mark == 1) xf += 5;
+
+				if (xf > 900)
 				{
 					mark = 0;
 					alphaF = 0;
 					xf = x;
 					yf = y;
+				}
+				if (En.x > 30)
+				{
+					En.x -= 2;
+				}
+				else
+				{
 					En.x = 800;
 					En.y = rand() % 400;
 					En.kind = rand() % 3;
 					En.match = En.kind + 1;
-					rec++;
 				}
-			}
-			if (En.x == x && abs(En.y - y) < 65)
-			{
-				life--;
-			}
-			for (int i = 0; i < N; i++)
-			{
-				if (abs(x - xc[i]) < 30 && abs(y - yc[i]) < 30)
+				if (abs(En.x - xf) < 65 && abs(En.y - yf) < 65 && mark == 1)
 				{
-					xc[i] = rand() % 900 + 100;
-					yc[i] = rand() % 400 + 100;
-					rec += 5;
+					En.match--;
+					alphaF = 0;
+					xf = x;
+					yf = y;
+					if (En.match == 0)
+					{
+						mark = 0;
+						alphaF = 0;
+						xf = x;
+						yf = y;
+						En.x = 800;
+						En.y = rand() % 400;
+						En.kind = rand() % 3;
+						En.match = En.kind + 1;
+						rec++;
+					}
 				}
+				if (En.x == x && abs(En.y - y) < 131)
+				{
+					life--;
+				}
+				for (int i = 0; i < N; i++)
+				{
+					if (abs(x - xc[i]) < 30 && abs(y - yc[i]) < 30)
+					{
+						xc[i] = rand() % 762 + 131;
+						yc[i] = rand() % 250 + 131;
+						rec += 5;
+					}
+				}
+				Enemy.setTextureRect(IntRect(En.kind * 131, 0, 131, 131));
+				Enemy.setColor(Color(255, 255, 255, En.alpha));
+				Enemy.setPosition(En.x, En.y);
+
+				Fire.setColor(Color(255, 255, 255, alphaF));
+				Fire.setPosition(xf, yf);
+
+				Hero.setPosition(x, y);
+
+				Heart.setPosition(50, 30);
+
+				app.draw(Back);
+				for (int i = 0; i < N; i++)
+				{
+					Coins.setPosition(xc[i], yc[i]);
+					app.draw(Coins);
+				}
+				app.draw(Hero);
+				app.draw(Enemy);
+				app.draw(Fire);
+				app.draw(txt);
+				app.draw(Heart);
+				app.draw(txt1);
+
+
+				app.display();
 			}
-			Enemy.setTextureRect(IntRect(En.kind * 131, 0, 131, 131));
-			Enemy.setColor(Color(255, 255, 255, En.alpha));
-			Enemy.setPosition(En.x, En.y);
-
-			Fire.setColor(Color(255, 255, 255, alphaF));
-			Fire.setPosition(xf, yf);
-
-			Hero.setPosition(x, y);
-
-			Heart.setPosition(50, 30);
-
-			app.draw(Back);
-			for (int i = 0; i < N; i++)
-			{
-				Coins.setPosition(xc[i], yc[i]);
-				app.draw(Coins);
-			}
-			app.draw(Hero);
-			app.draw(Enemy);
-			app.draw(Fire);
-			app.draw(txt);
-			app.draw(Heart);
-			app.draw(txt1);
-
-
-			app.display();
 		}
-	}
-	if (c == 2)
-	{
-		while (app.isOpen())
+		if (c == 2)
 		{
-			Event e;
-			while (app.pollEvent(e))
+			while (app.isOpen())
 			{
-				if (e.type == Event::Closed || life <= 0)
-					app.close();
+				Event e;
+				while (app.pollEvent(e))
+				{
+					if (e.type == Event::Closed || life <= 0)
+						app.close();
+				}
+				app.draw(Back);
+				txt2.setFont(font);
+				txt2.setCharacterSize(20);
+				txt2.setColor(Color::Red);
+				txt2.setPosition(125, 35);
+				txt2.setString(string("Press w or s to move. Press enter to shoot \n Game rules : \n 1) The player gains points.Actions for which the account is increased : \n a) for every second of the game, 1 point is awarded  \n b) For one killed peasant is credited with 20 point \n The peasant dies for 1 shot for losing the peasant is taken away 1 life(heart) \n c) For one killed soldier is charged 50 points. \n The warrior dies for 3 shots.For loss to the warrior, the whole life(all the remaining hearts) is taken away. \n d) For a stone is not charged a single point.\n It can be jumped or destroyed in 10 strokes. \n When a pebble has come to you, the hero is deprived of all life(all hearts).\n 2) Terms of completion of the game : \n Loss of all lives(all hearts)."));
+				app.draw(txt2);
+				app.display();
 			}
-			app.draw(Back);
-			txt2.setFont(font);
-			txt2.setCharacterSize(20);
-			txt2.setColor(Color::Red);
-			txt2.setPosition(125, 35);
-			txt2.setString(string("Press w or s to move. Press enter to shoot \n Game rules : \n 1) The player gains points.Actions for which the account is increased : \n a) for every second of the game, 1 point is awarded  \n b) For one killed peasant is credited with 20 point \n The peasant dies for 1 shot for losing the peasant is taken away 1 life(heart) \n c) For one killed soldier is charged 50 points. \n The warrior dies for 3 shots.For loss to the warrior, the whole life(all the remaining hearts) is taken away. \n d) For a stone is not charged a single point.\n It can be jumped or destroyed in 10 strokes. \n When a pebble has come to you, the hero is deprived of all life(all hearts).\n 2) Terms of completion of the game : \n Loss of all lives(all hearts)."));
-			app.draw(txt2);
-			app.display();
 		}
 	}
 	return 0;
