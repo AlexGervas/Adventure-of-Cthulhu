@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "main.h"
 
 using namespace sf;
 using namespace std;
@@ -193,7 +194,7 @@ int main()
 						rec++;
 					}
 				}
-				if (En.x == x && abs(En.y - y) < 131)
+				if (En.x == x && abs(En.y - y) < 262)
 				{
 					life--;
 				}
