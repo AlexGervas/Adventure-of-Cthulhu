@@ -4,7 +4,14 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include "main.h"
+#include <cstdio>
+#include <main.h>
+
+enum class MenuState {
+	WaitForPress,
+	WaitForRelease
+};
+
 
 using namespace sf;
 using namespace std;
@@ -14,11 +21,18 @@ int ts = 56;
 Vector2i offset(15, 15);
 int rec = 0;
 
+
 struct Anti
 {
 	int x, y, kind, match, alpha;
 	Anti(){ match = 0; alpha = 255; }
 };
+struct records
+{
+	char name[20];
+	int record;
+};
+
 int checkmenu(int c)
 {
 	if (c == 1 || c == 2) return 1;
@@ -76,7 +90,26 @@ int main()
 	int yc[N];
 	int c = 1;
 
-	Text txt2, txt3;
+	const int M = 10;
+	records tmp[M];
+	FILE *f, *fname;
+	f = fopen("record.txt", "r");
+	fname = fopen("recordname.txt", "r");
+	for (int i = 0; i < M; i++)
+	{
+		fscanf(fname, "%s", tmp[i].name);
+		fscanf(f, "%d", &tmp[i].record);
+	}
+	fclose(f);
+
+	string str;
+	Text text;
+	text.setFont(font);
+	text.setCharacterSize(20);
+	text.setColor(Color::Blue);
+	text.setPosition(400, 250);
+
+	Text txt2, txt3, txt4;
 	txt2.setFont(font);
 	txt2.setCharacterSize(40);
 	txt2.setColor(Color::Blue);
@@ -87,6 +120,11 @@ int main()
 	txt3.setColor(Color::Yellow);
 	txt3.setPosition(35, 50);
 	txt3.setString(string("\n2. Help"));
+	txt4.setFont(font);
+	txt4.setCharacterSize(40);
+	txt4.setColor(Color::Yellow);
+	txt4.setPosition(35, 100);
+	txt4.setString(string("\n3. Exit"));
 
 	bool mar = 0;
 	for (int i = 0; i < N; i++)
@@ -100,21 +138,68 @@ int main()
 		{
 			txt2.setColor(Color::Blue);
 			txt3.setColor(Color::Yellow);
+			txt4.setColor(Color::Yellow);
 		}
 		if (c == 2)
 		{
 			txt3.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
+			txt4.setColor(Color::Yellow);
+		}
+		if (c == 3)
+		{
+			
+			txt4.setColor(Color::Blue);
+			txt2.setColor(Color::Yellow);
+			txt3.setColor(Color::Yellow);
 		}
 
 		app.draw(Back);
 		app.draw(txt2);
 		app.draw(txt3);
+		app.draw(txt4);
 
 		app.display();
-		if (Keyboard::isKeyPressed(Keyboard::Down)) c = 2;
-		if (Keyboard::isKeyPressed(Keyboard::Up)) c = 1;
-		if (Keyboard::isKeyPressed(Keyboard::Return)) mar = 1;
+
+		MenuState menuState = MenuState::WaitForPress;
+		Event e;
+		while (app.pollEvent(e)) 
+		{
+			if (e.type == Event::Closed) 
+			{
+				app.close();
+			}
+			switch (menuState) {
+			case MenuState::WaitForPress:
+				if (e.type != Event::KeyPressed) 
+				{
+					break;
+				}
+				if (e.key.code == Keyboard::Up)
+				{
+					c--;
+					menuState = MenuState::WaitForRelease;
+				}
+				else if (e.key.code == Keyboard::Down) 
+				{
+					c++;
+					menuState = MenuState::WaitForRelease;
+				}
+				else if (e.key.code == Keyboard::Return)
+				{
+					mar = 1;
+					menuState = MenuState::WaitForRelease;
+				}
+				break;
+
+			case MenuState::WaitForRelease:
+				if (e.type == Event::KeyReleased && (e.key.code == Keyboard::Up || e.key.code == Keyboard::Down)) 
+				{
+					menuState = MenuState::WaitForPress;
+				}
+				break;
+			}
+		}
 	}
 	if (checkmenu(c))
 	{
@@ -137,11 +222,35 @@ int main()
 				txt1.setString(string("x") + to_string(life));
 
 
-
 				while (app.pollEvent(e))
 				{
-					if (e.type == Event::Closed || life <= 0)
+					if (e.type == Event::Closed)
 						app.close();
+				}
+
+				if (life <= 0)
+				{
+					app.draw(Back);
+					app.draw(text);
+					if (rec <= tmp[M - 1].record) app.close();
+					else
+					{
+
+						if (e.type == Event::TextEntered)
+						{
+							do
+							{
+								if (e.text.unicode < 128)
+								{
+									str += static_cast<char>(e.text.unicode);
+									text.setString(str);
+								}
+							}
+							while (!Keyboard::isKeyPressed(Keyboard::Return)); 
+							app.close();
+						}
+					}
+					app.display();
 				}
 
 				if (Keyboard::isKeyPressed(Keyboard::Down) && checkwindowdown (x,y)) y += 3;
@@ -175,7 +284,7 @@ int main()
 					En.kind = rand() % 3;
 					En.match = En.kind + 1;
 				}
-				if (abs(En.x - xf) < 65 && abs(En.y - yf) < 65 && mark == 1)
+				if (abs(En.x - xf) < 65 && abs(En.y - yf) < 131 && mark == 1)
 				{
 					En.match--;
 					alphaF = 0;
@@ -255,6 +364,7 @@ int main()
 				app.display();
 			}
 		}
+		if (c == 3) app.close();
 	}
 	return 0;
 }
