@@ -228,30 +228,6 @@ int main()
 						app.close();
 				}
 
-				if (life <= 0)
-				{
-					app.draw(Back);
-					app.draw(text);
-					if (rec <= tmp[M - 1].record) app.close();
-					else
-					{
-
-						if (e.type == Event::TextEntered)
-						{
-							do
-							{
-								if (e.text.unicode < 128)
-								{
-									str += static_cast<char>(e.text.unicode);
-									text.setString(str);
-								}
-							}
-							while (!Keyboard::isKeyPressed(Keyboard::Return)); 
-							app.close();
-						}
-					}
-					app.display();
-				}
 
 				if (Keyboard::isKeyPressed(Keyboard::Down) && checkwindowdown (x,y)) y += 3;
 				if (Keyboard::isKeyPressed(Keyboard::Up) && checkwindowup(x, y)) y -= 3;
