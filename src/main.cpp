@@ -35,7 +35,7 @@ struct records
 
 int checkmenu(int c)
 {
-	if (c == 1 || c == 2) return 1;
+	if (c == 1 || c == 2 || c == 3) return 1;
 	else return 0;
 }
 int checkwindowup(int x, int y)
@@ -91,16 +91,16 @@ int main()
 	int c = 1;
 
 	const int M = 10;
-	records tmp[M];
-	FILE *f, *fname;
-	f = fopen("record.txt", "r");
-	fname = fopen("recordname.txt", "r");
-	for (int i = 0; i < M; i++)
-	{
-		fscanf(fname, "%s", tmp[i].name);
-		fscanf(f, "%d", &tmp[i].record);
-	}
-	fclose(f);
+	//records tmp[M];
+	//FILE *f, *fname;
+	//f = fopen("record.txt", "r");
+	//fname = fopen("recordname.txt", "r");
+	//for (int i = 0; i < M; i++)
+	//{
+	//	fscanf(fname, "%s", tmp[i].name);
+	//	fscanf(f, "%d", &tmp[i].record);
+	//}
+	//fclose(f);
 
 	string str;
 	Text text;
