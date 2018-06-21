@@ -5,7 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <cstdio>
-#include <main.h>
+#include "main.h"
 
 enum class MenuState {
 	WaitForPress,
