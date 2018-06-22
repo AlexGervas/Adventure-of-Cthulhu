@@ -265,7 +265,7 @@ int main()
 				if (Keyboard::isKeyPressed(Keyboard::Left) && checkwindowleft(x, y)) x -= 3;
 				if (Keyboard::isKeyPressed(Keyboard::Return))
 				{
-					xf += 5;
+					xf = x + 5;
 					yf = y;
 					alphaF = 255;
 					mark = 1;
