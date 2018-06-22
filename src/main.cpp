@@ -335,14 +335,14 @@ int main()
 				}
 				if (rec == 6 || rec == 66 || rec == 666 || rec == 13)
 				{
-						Texture t7;
+					Texture t7;
 					t7.loadFromFile("images/Hell.png");
 					Sprite Hell(t7);
 					music.stop();
 					scream.setVolume(100);
 					scream.play();
 					scream.setLoop(true);
-					for (int i=0;i<150;i++)
+					for (int i = 0; i < 150; i++)
 					{
 						app.draw(Hell);
 						app.display();
