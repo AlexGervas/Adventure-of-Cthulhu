@@ -81,7 +81,7 @@ int main()
 
 	Music music, scream;
 	music.openFromFile("epic.ogg");
-	scream.openFromFile("scream1.ogg");
+	scream.openFromFile("scream.ogg");
 	music.setVolume(10);
 	music.play();
 	music.setLoop(true);
