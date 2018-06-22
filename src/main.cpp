@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <cstdlib>
 #include <time.h>
 #include <string>
@@ -78,6 +79,10 @@ int main()
 	Sprite Back(t1), Hero(t2), Enemy(t3), Fire(t4), Heart(t5), Coins(t6);
 
 	Anti En;
+
+	Music music;
+	music.openFromFile("epic.ogg");
+	music.play();
 
 	En.x = 800;
 	En.y = rand() % 400;
@@ -161,7 +166,6 @@ int main()
 		}
 		if (c == 4)
 		{
-			
 			txt4.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
@@ -276,7 +280,7 @@ int main()
 					En.kind = rand() % 3;
 					En.match = En.kind + 1;
 				}
-				if (abs(En.x - xf) < 65 && abs(En.y - yf) < 131 && mark == 1)
+				if (abs(En.x - xf) < 20 && abs(En.y - yf) < 65 && mark == 1)
 				{
 					En.match--;
 					alphaF = 0;
@@ -295,9 +299,18 @@ int main()
 						rec++;
 					}
 				}
-				if (En.x == x && abs(En.y - y) < 262)
+				if (abs(En.x - x)<20 && abs(En.y - y) < 150)
 				{
 					life--;
+					mark = 0;
+					alphaF = 0;
+					xf = x;
+					yf = y;
+					En.x = 800;
+					En.y = rand() % 400;
+					En.kind = rand() % 3;
+					En.match = En.kind + 1;
+
 				}
 				for (int i = 0; i < N; i++)
 				{
@@ -307,6 +320,14 @@ int main()
 						yc[i] = rand() % 250 + 131;
 						rec += 5;
 					}
+				}
+				if (rec == 666)
+				{
+					Texture t7;
+					t7.loadFromFile("images/hell.png");
+					Sprite Hell(t7);
+					app.draw(Hell);
+
 				}
 				Enemy.setTextureRect(IntRect(En.kind * 131, 0, 131, 131));
 				Enemy.setColor(Color(255, 255, 255, En.alpha));
@@ -346,10 +367,9 @@ int main()
 					{
 						temp = i;
 						break;
-
 					}
 				}
-				for (int i = M-1; i > temp; i--)
+				for (int i = M - 1; i > temp; i--)
 					tmp[i].record = tmp[i - 1].record;
 				tmp[temp].record = rec;
 			}
