@@ -83,17 +83,16 @@ int main()
 	Music music, scream;
 	music.openFromFile("epic.ogg");
 	scream.openFromFile("scream.ogg");
-	scream.setVolume(10);
 	music.setVolume(10);
 	music.play();
 	music.setLoop(true);
-	
+
 	SoundBuffer Buffer1, Buffer2;
 	Buffer1.loadFromFile("fire.ogg");
-	Buffer1.loadFromFile("btoom.ogg");
+	Buffer2.loadFromFile("btoom.ogg");
 	Sound gun(Buffer1);
+	gun.setVolume(50);
 	Sound death(Buffer2);
-
 	En.x = 800;
 	En.y = rand() % 400;
 	En.kind = rand() % 3;
@@ -165,6 +164,7 @@ int main()
 			txt2.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
 			txt5.setColor(Color::Yellow);
+
 		}
 		if (c == 3)
 		{
@@ -173,6 +173,7 @@ int main()
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
 			txt5.setColor(Color::Yellow);
+
 		}
 		if (c == 4)
 		{
@@ -180,6 +181,7 @@ int main()
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
 			txt5.setColor(Color::Yellow);
+
 		}
 		app.draw(Back);
 		app.draw(txt2);
@@ -270,6 +272,7 @@ int main()
 					alphaF = 255;
 					mark = 1;
 					gun.play();
+
 				}
 				if (mark == 1) xf += 5;
 
@@ -299,6 +302,7 @@ int main()
 					yf = y;
 					if (En.match == 0)
 					{
+						death.play();
 						mark = 0;
 						alphaF = 0;
 						xf = x;
@@ -308,7 +312,6 @@ int main()
 						En.kind = rand() % 3;
 						En.match = En.kind + 1;
 						rec++;
-						death.play();
 					}
 				}
 				if (abs(En.x - x)<20 && abs(En.y - y) < 150)
@@ -342,7 +345,7 @@ int main()
 					scream.setVolume(100);
 					scream.play();
 					scream.setLoop(true);
-					for (int i = 0; i < 150; i++)
+					for (int i=0;i<150;i++)
 					{
 						app.draw(Hell);
 						app.display();
@@ -350,7 +353,6 @@ int main()
 					rec++;
 					scream.stop();
 					music.play();
-
 				}
 				Enemy.setTextureRect(IntRect(En.kind * 131, 0, 131, 131));
 				Enemy.setColor(Color(255, 255, 255, En.alpha));
