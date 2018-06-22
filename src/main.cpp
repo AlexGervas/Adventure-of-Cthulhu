@@ -333,7 +333,7 @@ int main()
 						rec += 5;
 					}
 				}
-				if (rec == 6)
+				if (rec == 6 || rec == 66 || rec == 666 || rec == 13)
 				{
 					Texture t7;
 					t7.loadFromFile("images/Hell.png");
