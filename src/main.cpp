@@ -177,10 +177,10 @@ int main()
 		}
 		if (c == 4)
 		{
-			txt4.setColor(Color::Blue);
+			txt5.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
-			txt5.setColor(Color::Yellow);
+			txt4.setColor(Color::Yellow);
 
 		}
 		app.draw(Back);
