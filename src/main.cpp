@@ -102,33 +102,28 @@ int main()
 	Text text;
 	text.setFont(font);
 	text.setCharacterSize(20);
-	//text.setColor(Color::Blue);
-	text.setFillColor(Color::Blue);
+	text.setColor(Color::Blue);
 	text.setPosition(400, 250);
 
 	Text txt2, txt3, txt4, txt5;
 	txt2.setFont(font);
 	txt2.setCharacterSize(40);
-	//txt2.setColor(Color::Blue);
-	txt2.setFillColor(Color::Blue);
+	txt2.setColor(Color::Blue);
 	txt2.setPosition(35, 35);
 	txt2.setString(string("1. New game"));
 	txt3.setFont(font);
 	txt3.setCharacterSize(40);
-	//txt3.setColor(Color::Yellow);
-	txt3.setFillColor(Color::Yellow);
+	txt3.setColor(Color::Yellow);
 	txt3.setPosition(35, 50);
 	txt3.setString(string("\n2. Help"));
 	txt4.setFont(font);
 	txt4.setCharacterSize(40);
-	//txt4.setColor(Color::Yellow);
-	txt4.setFillColor(Color::Yellow);
+	txt4.setColor(Color::Yellow);
 	txt4.setPosition(35, 100);
 	txt4.setString(string("\n3. Records"));
 	txt5.setFont(font);
 	txt5.setCharacterSize(40);
-	//txt5.setColor(Color::Yellow);
-	txt5.setFillColor(Color::Yellow);
+	txt5.setColor(Color::Yellow);
 	txt5.setPosition(35, 150);
 	txt5.setString(string("\n4. Exit"));
 
@@ -142,56 +137,35 @@ int main()
 	{
 		if (c == 1)
 		{
-			/*
+			
 			txt2.setColor(Color::Blue);
 			txt3.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
 			txt5.setFillColor(Color::Yellow);
-			*/
-			txt2.setFillColor(Color::Blue);
-			txt3.setFillColor(Color::Yellow);
-			txt4.setFillColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
-
 		}
 		if (c == 2)
 		{
-			/*
+			
 			txt3.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
 			txt5.setFillColor(Color::Yellow);
-			*/
-			txt3.setFillColor(Color::Blue);
-			txt2.setFillColor(Color::Yellow);
-			txt4.setFillColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
 		}
 		if (c == 3)
 		{
-			/*
+			
 			txt4.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
-			*/
-			txt4.setFillColor(Color::Blue);
-			txt2.setFillColor(Color::Yellow);
-			txt3.setFillColor(Color::Yellow);
 			txt5.setFillColor(Color::Yellow);
 		}
 		if (c == 4)
 		{
-			/*
+			
 			txt4.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
 			txt5.setFillColor(Color::Yellow);
-			*/
-			txt5.setFillColor(Color::Blue);
-			txt2.setFillColor(Color::Yellow);
-			txt3.setFillColor(Color::Yellow);
-			txt4.setFillColor(Color::Yellow);
 		}
 		app.draw(Back);
 		app.draw(txt2);
@@ -251,15 +225,13 @@ int main()
 				Text txt, txt1;
 				txt.setFont(font);
 				txt.setCharacterSize(25);
-				//txt.setColor(Color::Blue);
-				txt.setFillColor(Color::Blue);
+				txt.setColor(Color::Blue);
 				txt.setPosition(900, 30);
 				txt.setString(string("Score: \n      ") + to_string(rec));
 
 				txt1.setFont(font);
 				txt1.setCharacterSize(40);
-				//txt1.setColor(Color::Red);
-				txt1.setFillColor(Color::Red);
+				txt1.setColor(Color::Red);
 				txt1.setPosition(125, 35);
 				txt1.setString(string("x") + to_string(life));
 
@@ -277,8 +249,7 @@ int main()
 				if (Keyboard::isKeyPressed(Keyboard::Up) && checkwindowup(x, y)) y -= 3;
 				if (Keyboard::isKeyPressed(Keyboard::Right) && checkwindowright(x, y)) x += 3;
 				if (Keyboard::isKeyPressed(Keyboard::Left) && checkwindowleft(x, y)) x -= 3;
-				//	if (Keyboard::isKeyPressed(Keyboard::Return))
-				if (Keyboard::isKeyPressed(Keyboard::Enter))
+				if (Keyboard::isKeyPressed(Keyboard::Return))
 				{
 					xf += 5;
 					yf = y;
@@ -404,8 +375,7 @@ int main()
 				app.draw(Back);
 				txt2.setFont(font);
 				txt2.setCharacterSize(20);
-				//txt2.setColor(Color::Red);
-				txt2.setFillColor(Color::Red);
+				txt2.setColor(Color::Red);
 				txt2.setPosition(125, 35);
 				txt2.setString(string("You control Cthulhu with the help of the arrows. \nCthulhu can move up, down, right, left, and also diagonally when you press 2 keys (for example, to the right and up). \nPress enter to shoot. \n Game rules : \n 1) The player gains points.Actions for which the account is increased : \n a) for every second of the game, 1 point is awarded  \n b) For one killed peasant is credited with 20 point \n The peasant dies for 1 shot for losing the peasant is taken away 1 life(heart) \n c) For one killed soldier is charged 50 points. \n The warrior dies for 3 shots.For loss to the warrior, the whole life(all the remaining hearts) is taken away. \n d) For a stone is not charged a single point.\n It can be jumped or destroyed in 10 strokes. \n When a pebble has come to you, the hero is deprived of all life(all hearts).\n 2) Terms of completion of the game : \n Loss of all lives(all hearts)."));
 				app.draw(txt2);
@@ -428,8 +398,7 @@ int main()
 				ifstream fin("record.txt");
 				txt6.setFont(font);
 				txt6.setCharacterSize(20);
-				//txt6.setColor(Color::Red);
-				txt6.setFillColor(Color::Red);
+				txt6.setColor(Color::Red);
 				for (int i = 0; i < M; i++)
 				{
 					fin >> out;
