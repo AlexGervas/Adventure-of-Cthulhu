@@ -141,7 +141,7 @@ int main()
 			txt2.setColor(Color::Blue);
 			txt3.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
+			txt5.setColor(Color::Yellow);
 		}
 		if (c == 2)
 		{
@@ -149,7 +149,7 @@ int main()
 			txt3.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
+			txt5.setColor(Color::Yellow);
 		}
 		if (c == 3)
 		{
@@ -157,7 +157,7 @@ int main()
 			txt4.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
+			txt5.setColor(Color::Yellow);
 		}
 		if (c == 4)
 		{
@@ -165,7 +165,7 @@ int main()
 			txt4.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
-			txt5.setFillColor(Color::Yellow);
+			txt5.setColor(Color::Yellow);
 		}
 		app.draw(Back);
 		app.draw(txt2);
@@ -336,26 +336,22 @@ int main()
 				app.display();
 			}
 			app.draw(Back);
-			Event e1;
 			int temp;
-			while (app.pollEvent(e1))
+			if (rec <= tmp[M - 1].record) app.close();
+			else
 			{
-				if (rec <= tmp[M - 1].record) app.close();
-				else
+				for (int i = 0; i < M - 1; i++)
 				{
-					for (int i = 0; i < M - 1; i++)
+					if (rec > tmp[i].record)
 					{
-						if (rec > tmp[i].record)
-						{
-							temp = i;
-							break;
+						temp = i;
+						break;
 
-						}
 					}
-					for (int i = M-1; i > temp; i--)
-						tmp[i].record = tmp[i - 1].record;
-					tmp[temp].record = rec;
 				}
+				for (int i = M-1; i > temp; i--)
+					tmp[i].record = tmp[i - 1].record;
+				tmp[temp].record = rec;
 			}
 			ofstream fout ("record.txt");
 			for (int i = 0; i < M; i++)
