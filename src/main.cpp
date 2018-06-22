@@ -205,12 +205,12 @@ int main()
 				{
 					break;
 				}
-				if (e.key.code == Keyboard::Up)
+				if (e.key.code == Keyboard::Up && c > 1)
 				{
 					c--;
 					menuState = MenuState::WaitForRelease;
 				}
-				else if (e.key.code == Keyboard::Down) 
+				else if (e.key.code == Keyboard::Down && c < 4) 
 				{
 					c++;
 					menuState = MenuState::WaitForRelease;
