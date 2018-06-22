@@ -80,9 +80,11 @@ int main()
 
 	Anti En;
 
-	Music music;
+	Music music, scream;
 	music.openFromFile("epic.ogg");
+	scream.openFromFile("scream.ogg");
 	music.play();
+	music.setLoop(true);
 	
 	SoundBuffer Buffer1, Buffer2;
 	Buffer1.loadFromFile("fire.ogg");
@@ -329,12 +331,20 @@ int main()
 						rec += 5;
 					}
 				}
-				if (rec == 666)
+				if (rec == 6)
 				{
 					Texture t7;
-					t7.loadFromFile("images/hell.png");
+					t7.loadFromFile("images/Hell.png");
 					Sprite Hell(t7);
-					app.draw(Hell);
+					music.stop();
+					scream.play();
+					scream.setLoop(true);
+					while (e.type != Event::Closed)
+					{
+						app.draw(Hell);
+						app.display();
+					}
+					app.close();
 
 				}
 				Enemy.setTextureRect(IntRect(En.kind * 131, 0, 131, 131));
