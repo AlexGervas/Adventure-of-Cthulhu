@@ -5,7 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <cstdio>
-#include "main.h"
+#include <fstream>
+#unclude "main.h"
 
 enum class MenuState {
 	WaitForPress,
@@ -35,7 +36,7 @@ struct records
 
 int checkmenu(int c)
 {
-	if (c == 1 || c == 2 || c == 3) return 1;
+	if (c == 1 || c == 2 || c == 3 || c == 4) return 1;
 	else return 0;
 }
 int checkwindowup(int x, int y)
@@ -91,40 +92,45 @@ int main()
 	int c = 1;
 
 	const int M = 10;
-	//records tmp[M];
-	//FILE *f, *fname;
-	//f = fopen("record.txt", "r");
-	//fname = fopen("recordname.txt", "r");
-	//for (int i = 0; i < M; i++)
-	//{
-	//	fscanf(fname, "%s", tmp[i].name);
-	//	fscanf(f, "%d", &tmp[i].record);
-	//}
-	//fclose(f);
+	records tmp[M];
+	ifstream fin("record.txt");
+	for (int i = 0; i < M; i++)
+		fin >> tmp[i].record;
+	fin.close();
 
 	string str;
 	Text text;
 	text.setFont(font);
 	text.setCharacterSize(20);
-	text.setColor(Color::Blue);
+	//text.setColor(Color::Blue);
+	text.setFillColor(Color::Blue);
 	text.setPosition(400, 250);
 
-	Text txt2, txt3, txt4;
+	Text txt2, txt3, txt4, txt5;
 	txt2.setFont(font);
 	txt2.setCharacterSize(40);
-	txt2.setColor(Color::Blue);
+	//txt2.setColor(Color::Blue);
+	txt2.setFillColor(Color::Blue);
 	txt2.setPosition(35, 35);
 	txt2.setString(string("1. New game"));
 	txt3.setFont(font);
 	txt3.setCharacterSize(40);
-	txt3.setColor(Color::Yellow);
+	//txt3.setColor(Color::Yellow);
+	txt3.setFillColor(Color::Yellow);
 	txt3.setPosition(35, 50);
 	txt3.setString(string("\n2. Help"));
 	txt4.setFont(font);
 	txt4.setCharacterSize(40);
-	txt4.setColor(Color::Yellow);
+	//txt4.setColor(Color::Yellow);
+	txt4.setFillColor(Color::Yellow);
 	txt4.setPosition(35, 100);
-	txt4.setString(string("\n3. Exit"));
+	txt4.setString(string("\n3. Records"));
+	txt5.setFont(font);
+	txt5.setCharacterSize(40);
+	//txt5.setColor(Color::Yellow);
+	txt5.setFillColor(Color::Yellow);
+	txt5.setPosition(35, 150);
+	txt5.setString(string("\n4. Exit"));
 
 	bool mar = 0;
 	for (int i = 0; i < N; i++)
@@ -136,28 +142,62 @@ int main()
 	{
 		if (c == 1)
 		{
+			/*
 			txt2.setColor(Color::Blue);
 			txt3.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
+			*/
+			txt2.setFillColor(Color::Blue);
+			txt3.setFillColor(Color::Yellow);
+			txt4.setFillColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
+
 		}
 		if (c == 2)
 		{
+			/*
 			txt3.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt4.setColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
+			*/
+			txt3.setFillColor(Color::Blue);
+			txt2.setFillColor(Color::Yellow);
+			txt4.setFillColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
 		}
 		if (c == 3)
 		{
-			
+			/*
 			txt4.setColor(Color::Blue);
 			txt2.setColor(Color::Yellow);
 			txt3.setColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
+			*/
+			txt4.setFillColor(Color::Blue);
+			txt2.setFillColor(Color::Yellow);
+			txt3.setFillColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
 		}
-
+		if (c == 4)
+		{
+			/*
+			txt4.setColor(Color::Blue);
+			txt2.setColor(Color::Yellow);
+			txt3.setColor(Color::Yellow);
+			txt5.setFillColor(Color::Yellow);
+			*/
+			txt5.setFillColor(Color::Blue);
+			txt2.setFillColor(Color::Yellow);
+			txt3.setFillColor(Color::Yellow);
+			txt4.setFillColor(Color::Yellow);
+		}
 		app.draw(Back);
 		app.draw(txt2);
 		app.draw(txt3);
 		app.draw(txt4);
+		app.draw(txt5);
 
 		app.display();
 
@@ -185,7 +225,7 @@ int main()
 					c++;
 					menuState = MenuState::WaitForRelease;
 				}
-				else if (e.key.code == Keyboard::Return)
+				else if (e.key.code == Keyboard::Enter)
 				{
 					mar = 1;
 					menuState = MenuState::WaitForRelease;
@@ -211,13 +251,15 @@ int main()
 				Text txt, txt1;
 				txt.setFont(font);
 				txt.setCharacterSize(25);
-				txt.setColor(Color::Blue);
+				//txt.setColor(Color::Blue);
+				txt.setFillColor(Color::Blue);
 				txt.setPosition(900, 30);
 				txt.setString(string("Score: \n      ") + to_string(rec));
 
 				txt1.setFont(font);
 				txt1.setCharacterSize(40);
-				txt1.setColor(Color::Red);
+				//txt1.setColor(Color::Red);
+				txt1.setFillColor(Color::Red);
 				txt1.setPosition(125, 35);
 				txt1.setString(string("x") + to_string(life));
 
@@ -228,12 +270,15 @@ int main()
 						app.close();
 				}
 
+				if (life <= 0) 
+					break;
 
 				if (Keyboard::isKeyPressed(Keyboard::Down) && checkwindowdown (x,y)) y += 3;
 				if (Keyboard::isKeyPressed(Keyboard::Up) && checkwindowup(x, y)) y -= 3;
 				if (Keyboard::isKeyPressed(Keyboard::Right) && checkwindowright(x, y)) x += 3;
 				if (Keyboard::isKeyPressed(Keyboard::Left) && checkwindowleft(x, y)) x -= 3;
-				if (Keyboard::isKeyPressed(Keyboard::Return))
+				//	if (Keyboard::isKeyPressed(Keyboard::Return))
+				if (Keyboard::isKeyPressed(Keyboard::Enter))
 				{
 					xf += 5;
 					yf = y;
@@ -319,6 +364,32 @@ int main()
 
 				app.display();
 			}
+			app.draw(Back);
+			Event e1;
+			int temp;
+			while (app.pollEvent(e1))
+			{
+				if (rec <= tmp[M - 1].record) app.close();
+				else
+				{
+					for (int i = 0; i < M - 1; i++)
+					{
+						if (rec > tmp[i].record)
+						{
+							temp = i;
+							break;
+
+						}
+					}
+					for (int i = M-1; i > temp; i--)
+						tmp[i].record = tmp[i - 1].record;
+					tmp[temp].record = rec;
+				}
+			}
+			ofstream fout ("record.txt");
+			for (int i = 0; i < M; i++)
+				fout << tmp[i].record << " ";
+			fout.close();
 		}
 		if (c == 2)
 		{
@@ -333,14 +404,46 @@ int main()
 				app.draw(Back);
 				txt2.setFont(font);
 				txt2.setCharacterSize(20);
-				txt2.setColor(Color::Red);
+				//txt2.setColor(Color::Red);
+				txt2.setFillColor(Color::Red);
 				txt2.setPosition(125, 35);
 				txt2.setString(string("You control Cthulhu with the help of the arrows. \nCthulhu can move up, down, right, left, and also diagonally when you press 2 keys (for example, to the right and up). \nPress enter to shoot. \n Game rules : \n 1) The player gains points.Actions for which the account is increased : \n a) for every second of the game, 1 point is awarded  \n b) For one killed peasant is credited with 20 point \n The peasant dies for 1 shot for losing the peasant is taken away 1 life(heart) \n c) For one killed soldier is charged 50 points. \n The warrior dies for 3 shots.For loss to the warrior, the whole life(all the remaining hearts) is taken away. \n d) For a stone is not charged a single point.\n It can be jumped or destroyed in 10 strokes. \n When a pebble has come to you, the hero is deprived of all life(all hearts).\n 2) Terms of completion of the game : \n Loss of all lives(all hearts)."));
 				app.draw(txt2);
 				app.display();
 			}
 		}
-		if (c == 3) app.close();
+		int out = 0;
+		Text txt6;
+		if (c == 3)
+		{
+			while (app.isOpen())
+			{
+				Event e;
+				while (app.pollEvent(e))
+				{
+					if (e.type == Event::Closed || life <= 0)
+						app.close();
+				}
+				app.draw(Back);
+				ifstream fin("record.txt");
+				txt6.setFont(font);
+				txt6.setCharacterSize(20);
+				//txt6.setColor(Color::Red);
+				txt6.setFillColor(Color::Red);
+				for (int i = 0; i < M; i++)
+				{
+					fin >> out;
+					txt6.setPosition(35, i * 20);
+					txt6.setString(to_string(out));
+					app.draw(txt6);
+				}
+				app.display();
+				fin.close();
+			}
+
+		}
+		if (c == 4) app.close();
 	}
+	app.close();
 	return 0;
 }
