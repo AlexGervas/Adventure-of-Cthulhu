@@ -7,7 +7,6 @@
 #include <vector>
 #include <cstdio>
 #include <fstream>
-#include "main.h"
 
 enum class MenuState {
 	WaitForPress,
@@ -82,7 +81,7 @@ int main()
 
 	Music music, scream;
 	music.openFromFile("epic.ogg");
-	scream.openFromFile("scream.ogg");
+	scream.openFromFile("scream1.ogg");
 	music.setVolume(10);
 	music.play();
 	music.setLoop(true);
@@ -104,11 +103,12 @@ int main()
 	int xc[N];
 	int yc[N];
 	int c = 1;
+	int i;
 
 	const int M = 10;
 	records tmp[M];
 	ifstream fin("record.txt");
-	for (int i = 0; i < M; i++)
+	for (i = 0; i < M; i++)
 		fin >> tmp[i].record;
 	fin.close();
 
@@ -116,78 +116,37 @@ int main()
 	Text text;
 	text.setFont(font);
 	text.setCharacterSize(20);
-	text.setColor(Color::Blue);
-	text.setPosition(400, 250);
 
-	Text txt2, txt3, txt4, txt5;
-	txt2.setFont(font);
-	txt2.setCharacterSize(40);
-	txt2.setColor(Color::Blue);
-	txt2.setPosition(35, 35);
-	txt2.setString(string("1. New game"));
-	txt3.setFont(font);
-	txt3.setCharacterSize(40);
-	txt3.setColor(Color::Yellow);
-	txt3.setPosition(35, 50);
-	txt3.setString(string("\n2. Help"));
-	txt4.setFont(font);
-	txt4.setCharacterSize(40);
-	txt4.setColor(Color::Yellow);
-	txt4.setPosition(35, 100);
-	txt4.setString(string("\n3. Records"));
-	txt5.setFont(font);
-	txt5.setCharacterSize(40);
-	txt5.setColor(Color::Yellow);
-	txt5.setPosition(35, 150);
-	txt5.setString(string("\n4. Exit"));
+	Text txt[4];
+	for (i = 0; i < 4; i++)
+	{
+		txt[i].setFont(font);
+		txt[i].setCharacterSize(40);
+		txt[i].setColor(Color::Yellow);
+		txt[i].setPosition(35, 35 + 35*i);
+	}
+
+	txt[0].setString(string("1. New game"));
+	txt[1].setString(string("\n2. Help"));
+	txt[2].setString(string("\n3. Records"));
+	txt[3].setString(string("\n4. Exit"));
 
 	bool mar = 0;
-	for (int i = 0; i < N; i++)
+	for (i = 0; i < N; i++)
 	{
 		xc[i] = rand() % 762 + 131;
 		yc[i] = rand() % 250 + 131;
 	}
 	while (mar != 1)
 	{
-		if (c == 1)
+		for (i = 0; i < 4; i++)
 		{
-			
-			txt2.setColor(Color::Blue);
-			txt3.setColor(Color::Yellow);
-			txt4.setColor(Color::Yellow);
-			txt5.setColor(Color::Yellow);
+			txt[i].setColor(Color::Yellow);
 		}
-		if (c == 2)
-		{
-			
-			txt3.setColor(Color::Blue);
-			txt2.setColor(Color::Yellow);
-			txt4.setColor(Color::Yellow);
-			txt5.setColor(Color::Yellow);
-
-		}
-		if (c == 3)
-		{
-			
-			txt4.setColor(Color::Blue);
-			txt2.setColor(Color::Yellow);
-			txt3.setColor(Color::Yellow);
-			txt5.setColor(Color::Yellow);
-
-		}
-		if (c == 4)
-		{
-			txt5.setColor(Color::Blue);
-			txt2.setColor(Color::Yellow);
-			txt3.setColor(Color::Yellow);
-			txt4.setColor(Color::Yellow);
-
-		}
+		txt[c - 1].setColor(Color::Blue);
 		app.draw(Back);
-		app.draw(txt2);
-		app.draw(txt3);
-		app.draw(txt4);
-		app.draw(txt5);
+		for (i = 0; i < 4;i++)
+			app.draw(txt[i]);
 
 		app.display();
 
@@ -327,7 +286,7 @@ int main()
 					En.match = En.kind + 1;
 
 				}
-				for (int i = 0; i < N; i++)
+				for (i = 0; i < N; i++)
 				{
 					if (abs(x - xc[i]) < 30 && abs(y - yc[i]) < 30)
 					{
@@ -366,7 +325,7 @@ int main()
 				Heart.setPosition(50, 30);
 
 				app.draw(Back);
-				for (int i = 0; i < N; i++)
+				for (i = 0; i < N; i++)
 				{
 					Coins.setPosition(xc[i], yc[i]);
 					app.draw(Coins);
@@ -386,7 +345,7 @@ int main()
 			if (rec <= tmp[M - 1].record) app.close();
 			else
 			{
-				for (int i = 0; i < M - 1; i++)
+				for (i = 0; i < M - 1; i++)
 				{
 					if (rec > tmp[i].record)
 					{
@@ -394,7 +353,7 @@ int main()
 						break;
 					}
 				}
-				for (int i = M - 1; i > temp; i--)
+				for (i = M - 1; i > temp; i--)
 					tmp[i].record = tmp[i - 1].record;
 				tmp[temp].record = rec;
 			}
@@ -414,17 +373,14 @@ int main()
 						app.close();
 				}
 				app.draw(Back);
-				txt2.setFont(font);
-				txt2.setCharacterSize(20);
-				txt2.setColor(Color::Red);
-				txt2.setPosition(125, 35);
-				txt2.setString(string("You control Cthulhu with the help of the arrows. \nCthulhu can move up, down, right, left, and also diagonally when you press 2 keys (for example, to the right and up). \nPress enter to shoot. \n Game rules : \n 1) The player gains points.Actions for which the account is increased : \n a) for every second of the game, 1 point is awarded  \n b) For one killed peasant is credited with 20 point \n The peasant dies for 1 shot for losing the peasant is taken away 1 life(heart) \n c) For one killed soldier is charged 50 points. \n The warrior dies for 3 shots.For loss to the warrior, the whole life(all the remaining hearts) is taken away. \n d) For a stone is not charged a single point.\n It can be jumped or destroyed in 10 strokes. \n When a pebble has come to you, the hero is deprived of all life(all hearts).\n 2) Terms of completion of the game : \n Loss of all lives(all hearts)."));
-				app.draw(txt2);
+				text.setColor(Color::Red);
+				text.setPosition(125, 35);
+				text.setString(string("You control Cthulhu with the help of the arrows. \nCthulhu can move up, down, right, left, and also diagonally when you press 2 keys (for example, to the right and up). \nPress enter to shoot. \n Game rules : \n 1) The player gains points.Actions for which the account is increased : \n a) for every second of the game, 1 point is awarded  \n b) For one killed peasant is credited with 20 point \n The peasant dies for 1 shot for losing the peasant is taken away 1 life(heart) \n c) For one killed soldier is charged 50 points. \n The warrior dies for 3 shots.For loss to the warrior, the whole life(all the remaining hearts) is taken away. \n d) For a stone is not charged a single point.\n It can be jumped or destroyed in 10 strokes. \n When a pebble has come to you, the hero is deprived of all life(all hearts).\n 2) Terms of completion of the game : \n Loss of all lives(all hearts)."));
+				app.draw(text);
 				app.display();
 			}
 		}
 		int out = 0;
-		Text txt6;
 		if (c == 3)
 		{
 			while (app.isOpen())
@@ -437,15 +393,13 @@ int main()
 				}
 				app.draw(Back);
 				ifstream fin("record.txt");
-				txt6.setFont(font);
-				txt6.setCharacterSize(20);
-				txt6.setColor(Color::Red);
-				for (int i = 0; i < M; i++)
+				text.setColor(Color::Red);
+				for (i = 0; i < M; i++)
 				{
 					fin >> out;
-					txt6.setPosition(35, i * 20);
-					txt6.setString(to_string(out));
-					app.draw(txt6);
+					text.setPosition(35, i * 20);
+					text.setString(to_string(out));
+					app.draw(text);
 				}
 				app.display();
 				fin.close();
