@@ -6,7 +6,7 @@
 #include <vector>
 #include <cstdio>
 #include <fstream>
-#unclude "main.h"
+#include "main.h"
 
 enum class MenuState {
 	WaitForPress,
@@ -199,7 +199,7 @@ int main()
 					c++;
 					menuState = MenuState::WaitForRelease;
 				}
-				else if (e.key.code == Keyboard::Enter)
+				else if (e.key.code == Keyboard::Return)
 				{
 					mar = 1;
 					menuState = MenuState::WaitForRelease;
