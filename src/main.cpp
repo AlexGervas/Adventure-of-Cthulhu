@@ -83,6 +83,12 @@ int main()
 	Music music;
 	music.openFromFile("epic.ogg");
 	music.play();
+	
+	SoundBuffer Buffer1, Buffer2;
+	Buffer1.loadFromFile("fire.ogg");
+	Buffer1.loadFromFile("btoom.ogg");
+	Sound gun(Buffer1);
+	Sound death(Buffer2);
 
 	En.x = 800;
 	En.y = rand() % 400;
@@ -259,6 +265,7 @@ int main()
 					yf = y;
 					alphaF = 255;
 					mark = 1;
+					gun.play();
 				}
 				if (mark == 1) xf += 5;
 
@@ -297,6 +304,7 @@ int main()
 						En.kind = rand() % 3;
 						En.match = En.kind + 1;
 						rec++;
+						death.play();
 					}
 				}
 				if (abs(En.x - x)<20 && abs(En.y - y) < 150)
